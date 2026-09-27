@@ -1,0 +1,14 @@
+services:
+  disk-alert:
+    build: .
+    image: ghcr.io/sydque/disk-alert:latest
+    container_name: disk-alert
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - TZ=${TZ:-UTC}
+    volumes:
+      # Mount the host root filesystem read-only so the container can read
+      # disk usage stats for paths listed in EXTRA_FILESYSTEM (as they appear on the HOST).
+      - /:/hostfs:ro
