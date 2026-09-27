@@ -1,8 +1,8 @@
 services:
-  disk-alert:
+  chatdiskalert:
     build: .
-    image: ghcr.io/sydque/disk-alert:latest
-    container_name: disk-alert
+    image: ghcr.io/sydque/chatdiskalert:latest
+    container_name: chatdiskalert
     restart: unless-stopped
     env_file:
       - .env

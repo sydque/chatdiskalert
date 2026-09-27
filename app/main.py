@@ -70,7 +70,7 @@ def _card_payload(
 def _breach_payload(config: Config, usage: DiskUsage, threshold: float) -> dict:
     return _card_payload(
         config,
-        card_id="disk-alert-breach",
+        card_id="chatdiskalert-breach",
         title="\u26A0\uFE0F Disk Alert",
         fields=[
             ("Host", config.hostname_label),
@@ -87,7 +87,7 @@ def _breach_payload(config: Config, usage: DiskUsage, threshold: float) -> dict:
 def _resolved_payload(config: Config, usage: DiskUsage, threshold: float, duration: timedelta) -> dict:
     return _card_payload(
         config,
-        card_id="disk-alert-resolved",
+        card_id="chatdiskalert-resolved",
         title="\u2705 Disk Alert Resolved",
         fields=[
             ("Host", config.hostname_label),
@@ -103,7 +103,7 @@ def _resolved_payload(config: Config, usage: DiskUsage, threshold: float, durati
 def _reminder_payload(config: Config, path: str, percent: float, threshold: float, duration: timedelta) -> dict:
     return _card_payload(
         config,
-        card_id="disk-alert-reminder",
+        card_id="chatdiskalert-reminder",
         title="\U0001F514 Disk Alert Reminder",
         fields=[
             ("Host", config.hostname_label),
@@ -119,7 +119,7 @@ def _reminder_payload(config: Config, path: str, percent: float, threshold: floa
 def _startup_payload(config: Config) -> dict:
     return _card_payload(
         config,
-        card_id="disk-alert-startup",
+        card_id="chatdiskalert-startup",
         title="\u2139\uFE0F Disk Alert Started",
         fields=[("Host", config.hostname_label), ("Watching", ", ".join(config.disk_paths))],
         status_color="#4285f4",
@@ -181,7 +181,7 @@ def main() -> None:
     states = {path: AlertState(path=path) for path in config.disk_paths}
 
     logger.info(
-        "Starting disk-alert: paths=%s default_threshold=%.1f%% interval=%ss reminder_cron=%r",
+        "Starting chatdiskalert: paths=%s default_threshold=%.1f%% interval=%ss reminder_cron=%r",
         config.disk_paths,
         config.default_threshold,
         config.check_interval_seconds,
@@ -196,7 +196,7 @@ def main() -> None:
         _check_reminders(config, states)
         time.sleep(config.check_interval_seconds)
 
-    logger.info("disk-alert stopped")
+    logger.info("chatdiskalert stopped")
 
 
 if __name__ == "__main__":

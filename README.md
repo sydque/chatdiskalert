@@ -1,4 +1,4 @@
-# disk-alert
+# chatdiskalert
 
 A Docker-based tool that monitors disk usage on a Linux server and sends
 notifications to **Google Chat** whenever usage crosses a configured threshold.
@@ -18,7 +18,7 @@ While an alert stays unresolved, the tool sends periodic reminders based on a
 ## Project structure
 
 ```
-disk-alert/
+chatdiskalert/
 ├── app/
 │   ├── main.py           # main loop, message formatting, entrypoint
 │   ├── config.py         # read & validate configuration from .env
@@ -39,7 +39,7 @@ disk-alert/
 
 1. Open the target Google Chat space.
 2. Click the space name → **Apps & integrations** → **Manage webhooks**.
-3. Create a new webhook, give it a name (e.g. `disk-alert`), then copy its URL.
+3. Create a new webhook, give it a name (e.g. `chatdiskalert`), then copy its URL.
 4. Set that URL as `GOOGLE_CHAT_WEBHOOK_URL` in your `.env` file.
 
 ## 2. Configure `.env`
@@ -80,7 +80,7 @@ host (e.g. `/home`, `/var`), not paths inside the container.
 View logs:
 
 ```bash
-docker compose logs -f disk-alert
+docker compose logs -f chatdiskalert
 ```
 
 Stop:
@@ -93,7 +93,7 @@ docker compose down
 
 Every push to `main`/`master` builds and publishes the image via
 [.github/workflows/docker-build.yml](.github/workflows/docker-build.yml) to
-`ghcr.io/sydque/disk-alert:latest`. To pull that image instead of building
+`ghcr.io/sydque/chatdiskalert:latest`. To pull that image instead of building
 locally, remove the `build: .` line from `docker-compose.yml` and run:
 
 ```bash
